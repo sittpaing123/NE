@@ -347,7 +347,7 @@ https://t.me/+X7DNvf9iCy5jOGJl
                 quote=True,
             )
             await bot.send_photo(
-                Config.FILE_CHANNEL2,
+                Config.FILE_CHANNEL3,
 		photo=imdb.get("poster"),
                 caption=cap,
 	    )
@@ -365,7 +365,7 @@ https://t.me/+X7DNvf9iCy5jOGJl
                 quote=True,
 	    )
             await bot.send_photo(
-                Config.FILE_CHANNEL8,
+                Config.FILE_CHANNEL3,
                 photo=poster,
                 caption=cap[:1024], 
 	    )
