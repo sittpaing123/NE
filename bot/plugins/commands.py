@@ -238,3 +238,33 @@ async def handleDelete(bot: Bot, msg: types.Message):
                 return await msg.edit("File is successfully deleted from database")
 
         await msg.edit("File not found in database")
+
+
+@Bot.on_message(filters.command('deleteall') & filters.user(Config.ADMINS))
+async def delete_all_index(bot, message):
+    await message.reply_text(
+        'This will delete all indexed files.\nDo you want to continue??',
+        reply_markup=types.InlineKeyboardMarkup(
+            [
+                [
+                    types.InlineKeyboardButton(
+                        text="DB File YES", callback_data="autofilter_delete1"
+                    )
+                ],   
+                [
+                    types.InlineKeyboardButton(
+                        text="CANCEL", callback_data="close_data"
+                    )
+                ],
+            ]
+        ),
+        quote=True,
+    )
+
+
+@Bot.on_callback_query(filters.regex(r'^autofilter_delete1'))
+async def adelete_all_index_confirm(bot, message):
+    await a_filter.col.drop()
+    await message.answer('Piracy Is Crime')
+    await message.message.edit('Succesfully Deleted All The Indexed Files.') 
+    
