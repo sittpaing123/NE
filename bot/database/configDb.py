@@ -27,7 +27,8 @@ class ConfigDB(MongoDb):
                 "PM_IMDB": Config.PM_IMDB,
                 "PM_IMDB_POSTER": Config.PM_IMDB_POSTER,
                 "DOWNLOAD_BUTTON": True,
-                "PHOTO_FILTER": Config.PHOTO_FILTER
+                "PHOTO_FILTER": Config.PHOTO_FILTER,
+                "CH_POST": Config.CH_POST
             }
         return {}
 
