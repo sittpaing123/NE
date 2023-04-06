@@ -23,7 +23,7 @@ log = LOGGER(__name__)
 START_TEXT = """Hey {mention} 👋
 Iam An Advanced AutoFilter Bot
 
-**@Movie_Zone_KP**
+**@KOPAINGLAY15**
 """
 
 HELP_TEXT = START_TEXT
