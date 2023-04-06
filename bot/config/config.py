@@ -39,7 +39,7 @@ class Config:
     BOT_NAME = get_config("BOT_NAME", "FILTER_BOT")
 
     LOG_CHANNEL = int(get_config("LOG_CHANNEL", "-1001254905376"))
-    FORCE_SUB_CHANNEL = int(get_config("FORCE_SUB_CHANNEL", "-1001564382219""))
+    FORCE_SUB_CHANNEL = int(get_config("FORCE_SUB_CHANNEL", "-1001564382219"))
 
 
     TEMPLATE = get_config(
