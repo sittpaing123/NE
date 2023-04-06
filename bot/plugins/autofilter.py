@@ -320,7 +320,7 @@ async def ch9_imdb(bot: Bot, message: types.Message, text=True):
     
     if imdb:
         
-        cap += Config.TEMPLATE8.format(
+        cap += Config.TEMPLATE2.format(
             query=search,
             **imdb,
             **locals(),
@@ -347,7 +347,7 @@ https://t.me/+X7DNvf9iCy5jOGJl
                 quote=True,
             )
             await bot.send_photo(
-                Config.FILE_CHANNEL8,
+                Config.FILE_CHANNEL2,
 		photo=imdb.get("poster"),
                 caption=cap,
 	    )
