@@ -19,11 +19,11 @@ log = LOGGER(__name__)
 async def auto_filter(bot: Bot, message: types.Message, text=True):
     #if not await check_fsub(bot, message):
         #return 
+    a = await ch1_give_filter(bot, message)
     settings = await config_db.get_settings(f"SETTINGS_{message.chat.id}")
     if settings['CH_POST']:
         kt = await ch9_imdb(bot, message)
-        return
-        a = await ch1_give_filter(bot, message)
+        
 
 
 
