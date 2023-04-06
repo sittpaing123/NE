@@ -261,10 +261,10 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
         if not settings["DOWNLOAD_BUTTON"]:
             await query.message.reply_text(                
                 caption1,
-                reply_markup=InlineKeyboardMarkup(
+                reply_markup=types.InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton('Join Channel Link', url="https://t.me/+H7ERsk_04EoxOTU1")],
-                        [InlineKeyboardButton(f'📥 {file_info["file_name"]} {file_info["caption"]}📥', url=file_send.link)]
+                        [types.InlineKeyboardButton('Join Channel Link', url="https://t.me/+H7ERsk_04EoxOTU1")],
+                        [types.InlineKeyboardButton(f'📥 {file_info["file_name"]} {file_info["caption"]}📥', url=file_send.link)]
                     ]
                 ),
                 quote=True,
@@ -274,10 +274,10 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
             await bot.send_message(
                 chat_id=query.from_user.id,                
                 text=caption1,
-                reply_markup=InlineKeyboardMarkup(
+                reply_markup=types.InlineKeyboardMarkup(
                     [
-                        [InlineKeyboardButton( 'Join Channel link', url="https://t.me/+H7ERsk_04EoxOTU1")],
-                        [InlineKeyboardButton(f'📥 {file_info["file_name"]} {file_info["caption"]} 📥', url=file_send.link)]
+                        [types.InlineKeyboardButton( 'Join Channel link', url="https://t.me/+H7ERsk_04EoxOTU1")],
+                        [types.InlineKeyboardButton(f'📥 {file_info["file_name"]} {file_info["caption"]} 📥', url=file_send.link)]
                     ]
                 )
             )
