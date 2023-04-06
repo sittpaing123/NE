@@ -8,8 +8,18 @@ from ..database import a_filter
 media_filter = filters.document | filters.video | filters.audio | filters.photo
 
 
-@Client.on_message(filters.chat(Config.CHANNELS) & media_filter)  # type: ignore
-async def media(bot: Bot, message: Message):
+channel_filter = filters.chat(Config.CHANNELS_KP1) | \
+                 filters.chat(Config.CHANNELS_KP2) | \
+                 filters.chat(Config.CHANNELS_KP3) | \
+                 filters.chat(Config.CHANNELS_KP4) | \
+                 filters.chat(Config.CHANNELS_KP5) | \
+                 filters.chat(Config.CHANNELS_KP6) | \
+                 filters.chat(Config.CHANNELS_KPCT) | \
+                 filters.chat(Config.CHANNELS_KSCPR) | \
+                 filters.chat(Config.CHANNELS_MCPR) 
+
+@Client.on_message(channel_filter & media_filter)
+async def media_handler(bot: Bot, message: Message):
     """Media Handler"""
     for file_type in ("document", "video", "audio", "photo"):
         media = getattr(message, file_type, None)
