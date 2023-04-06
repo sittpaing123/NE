@@ -20,7 +20,8 @@ CONFIGURABLE = {
     "PM_IMDB": {"help": "Enable or disable IMDB status in PM", "name": "PM IMDb Info"},
     "PM_IMDB_POSTER": {"help": "Disable / Enable IMDB posters in PM", "name": "PM IMDb Posters"},
     "DOWNLOAD_BUTTON": {"help": "Enable / disable download button", "name": "Download Button"},
-    "PHOTO_FILTER": {"help": "Enable / disable photo filter", "name": "Photo Filter"}
+    "PHOTO_FILTER": {"help": "Enable / disable photo filter", "name": "Photo Filter"},
+    "CH_POST": {"help": "Enable / disable Ch Post", "name": "Ch POst"}
 }
 
 
@@ -152,12 +153,19 @@ async def format_buttons(files: list, channel: bool):
     return btn
 
 
-FORCE_TEXT = """🗣 မတ်‌ဆွေကြည့်ချင်တဲ့ဇာတ်ကားကို ပိုပေးဖိုအတွက် 👉🏻 Join Channel 👈🏻 က Join ထားဖိုလိုပါတယ်။ 
-Channel လေးကို  Join ပြီးရင် 
-🔄 Try Again 👈 Tap me လေးကို နှိပ်လိုက်ရင် 👌 ရပါပြီး။ 
-
-@Movie_Zone_KP"""
-
+FORCE_TEXT = """ 🗣 သင်သည် အောက်တွင်ပေးထားသော ကျွန်ုပ်တို့၏ Back-up ချန်နယ်တွင် မရှိသောကြောင့် ရုပ်ရှင်ဖိုင်ကို မရနိုင်ပါ။
+ရုပ်ရှင်ဖိုင်ကို လိုချင်ပါက၊ အောက်ဖော်ပြပါ '🍿ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ🍿' ခလုတ်ကို နှိပ်ပြီး ကျွန်ုပ်တို့၏ အရန်ချန်နယ်သို့ ဝင်ရောက်ပါ၊ 
+ 
+ထို့နောက် Group ထဲတွင် သင်ကြည်‌ချင်သော ရုပ်ရှင်အား ပြန်လည်နှိပ်ပြီး start ကို နှိပ်ပါ...
+ပြီးရင် ရုပ်ရှင်ဖိုင်တွေ ရလိမ့်မယ်။ ကျေးဇူးတင်ပါတယ်😇😇
+ 
+🗣 The movie file is not available because you are not in our Back-up channel given below.
+If you want the movie file, click the '🍿ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ🍿' button below and join our support channel, 
+    
+Then click again on the movie you want to watch in the group and click to start…
+Then you will get the movie files.  Thank you 😇😇
+    
+"""
 
 async def check_fsub(bot: Client, message: types.Message, try_again: str = None, sendMsg: bool = True):  # type: ignore
     user = message.from_user.id
@@ -167,7 +175,7 @@ async def check_fsub(bot: Client, message: types.Message, try_again: str = None,
         if sendMsg:
             invite_link = await bot.create_chat_invite_link(Config.FORCE_SUB_CHANNEL)
             btn = [
-                [types.InlineKeyboardButton("Join Channel", url=invite_link.invite_link)],
+                [types.InlineKeyboardButton("🍿ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ🍿", url=invite_link.invite_link)],
             ]
             if try_again:
                 btn.append(
