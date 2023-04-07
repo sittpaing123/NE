@@ -63,7 +63,7 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
             btn.append(
                 [
                     types.InlineKeyboardButton(
-                        text=f"🗓 1/{math.ceil(int(total_results) / 10)}",
+                        text=f"🗓 1/{math.ceil(int(total_results) / 5)}",
                         callback_data="pages",
                     ),
                     types.InlineKeyboardButton(
@@ -172,7 +172,7 @@ async def next_page(bot: Bot, query: types.CallbackQuery):
                     "⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"
                 ),
                 types.InlineKeyboardButton(
-                    f"📃 Pages {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
+                    f"📃 Pages {math.ceil(int(offset) / 5) + 1} / {math.ceil(total / 5)}",
                     callback_data="pages",
                 ),
             ]
@@ -181,7 +181,7 @@ async def next_page(bot: Bot, query: types.CallbackQuery):
         btn.append(
             [
                 types.InlineKeyboardButton(
-                    f"🗓 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
+                    f"🗓 {math.ceil(int(offset) / 5) + 1} / {math.ceil(total / 5)}",
                     callback_data="pages",
                 ),
                 types.InlineKeyboardButton(
@@ -196,7 +196,7 @@ async def next_page(bot: Bot, query: types.CallbackQuery):
                     "⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"
                 ),
                 types.InlineKeyboardButton(
-                    f"🗓 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
+                    f"🗓 {math.ceil(int(offset) / 5) + 1} / {math.ceil(total / 5)}",
                     callback_data="pages",
                 ),
                 types.InlineKeyboardButton(
