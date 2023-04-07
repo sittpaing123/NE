@@ -10,6 +10,9 @@ from trans import trans
 from ..config import Config
 from .tools import run_in_thread
 
+from googletrans import Translator
+
+translator = Translator()
 
 def list_to_str(k):
     if not k:
