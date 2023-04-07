@@ -75,7 +75,7 @@ class IMDB(Imdb):
             rating_count = 0
 
         try:
-            plot_outline = base_title_data["plot"]["outline"]["text"]
+            plot_outline = translator.translate(base_title_data["plot"]["outline"]["text"], src='en', dest='my').text
         except KeyError:
             plot_outline = None
 
