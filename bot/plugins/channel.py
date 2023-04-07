@@ -14,6 +14,7 @@ channel_filter = filters.chat(Config.CHANNELS_KP1) | \
                  filters.chat(Config.CHANNELS_KP4) | \
                  filters.chat(Config.CHANNELS_KP5) | \
                  filters.chat(Config.CHANNELS_KP6) | \
+                 filters.chat(Config.CHANNELS_SE) | \
                  filters.chat(Config.CHANNELS_KPCT) | \
                  filters.chat(Config.CHANNELS_KSCPR) | \
                  filters.chat(Config.CHANNELS_MCPR) 
