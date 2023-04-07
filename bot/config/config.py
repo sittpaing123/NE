@@ -63,7 +63,9 @@ class Config:
 🌟 Rating : <a href={url}/ratings>{rating}</a> / 10 ({votes} user ratings.)
 📀 RunTime: {runtime} Minutes
 📆 Release Info : {release_date}
-🎭 Genres: #{genres}
+🎭 Genres: <code>#{genres}</code>
+
+👥 Cast : <code>#{cast}</code>
         
 """,
     )
