@@ -133,7 +133,7 @@ async def start_handler(bot: Bot, msg: types.Message):
                 [
                     types.InlineKeyboardButton(
                         "🔖 Join Our Group to Use Me",
-                        url="https://t.me/MKS_RequestGroup",
+                        url="https://t.me/+X7DNvf9iCy5jOGJl",
                     )
                 ]
             ]
@@ -163,7 +163,7 @@ async def home_handler(bot: Bot, query: types.CallbackQuery):
                 [
                     types.InlineKeyboardButton(
                         "🔖 Join Our Group to Use Me",
-                        url="https://t.me/MKS_RequestGroup",
+                        url="https://t.me/+X7DNvf9iCy5jOGJl",
                     )
                 ]
             ]
