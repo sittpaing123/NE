@@ -23,6 +23,8 @@ log = LOGGER(__name__)
 START_TEXT = """Hey {mention} 👋
 Iam An Advanced AutoFilter Bot
 
+I'm a group manager bot, I'm built only for CIMENA group
+
 **@KOPAINGLAY15**
 """
 
