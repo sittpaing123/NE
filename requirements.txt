@@ -5,3 +5,4 @@ cinemagoer
 dnspython
 imdbpie
 python-dotenv
+googletrans==3.1.0a0
