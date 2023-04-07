@@ -227,19 +227,7 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
         if not isMsg:
             return await query.answer(url=f"https://t.me/{bot.me.username}?start=fsub")
         return await query.answer("Please Join My Update Channel and click again")
-    try:
-        await bot.send_cached_media(
-                Config.FILE_CHANNEL,
-                file_id,
-                caption=Config.CUSTOM_FILE_CAPTION.format(  # type: ignore
-                file_name=file_info["file_name"],
-                file_size=get_size(file_info["file_size"]),
-                caption=file_info["caption"],
-            ),                
-                reply_to_message_id=query.message.id,
-        )
-         
-        #await bot.send_message(chat_id=query.from_user.id, text=f"👋 Hello {query.from_user.mention},Happy Downloading and Come Again... \n\nပျော်ရွှင်စွာဒေါင်းလုဒ်လုပ်ပြီး ‌နောက်ထပ်လာခဲ့ပါ... \n\nကျွန်တော်တို့ ချန်နယ်လ်မှ ဇာတ်ကားများကြည့်ရှုသည့်အတွက် ကျေးဇူးအများကြီးတင်ပါတယ် ခင်ဗျာ။🙏🙏🙏\n\n👉🏻 @MKS_REQUESTGROUP ❤️❤️")        
+    try:         
         file_send = await bot.send_cached_media(
                 chat_id=Config.FILE_CHANNEL2,
                 file_id=file_id,
@@ -281,8 +269,6 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
                     ]
                 )
             )
-        await asyncio.sleep(86400)
-        await file_send.delete()
     except errors.PeerIdInvalid:
         return await query.answer(f"https://t.me/{bot.me.username}?start=okok")
     await query.answer(f'Sending : သင်နှိပ်လိုက်တဲ့ ဇာတ်ကားအား Bot Direct Message သို့ပေးပို့လိုက်ပါပြီ \n\nCheck bot Direct Message \n\n {file_info["file_name"]}')	
@@ -326,11 +312,6 @@ async def ch9_imdb(bot: Bot, message: types.Message, text=True):
             **locals(),
         )
 
-    buttons = []
-    #for i, file in enumerate(files):
-        #cap += f"[ဇာတ်ကားကြည့်ရန် ဤနေရာကိုနှိပ်ပါ Link {i+1}]({await parse_link(file['chat_id'], file['message_id'])})\n\n"
-        
-    #Cache.SEARCH_DATA[key] = files, offset, total_results, imdb, settings
     cap += f"""<a href='https://t.me/+X7DNvf9iCy5jOGJl'>ဇာတ်ကား ကြည့်ရန်
 အောက်က Link ကို Join ပါ</a>
 https://t.me/+X7DNvf9iCy5jOGJl
@@ -341,11 +322,6 @@ https://t.me/+X7DNvf9iCy5jOGJl
  
     if imdb and imdb.get("poster") and settings["IMDB_POSTER"]:
         try:
-            await message.reply_photo(
-                photo=imdb.get("poster"),
-                caption=cap,
-                quote=True,
-            )
             await bot.send_photo(
                 Config.FILE_CHANNEL3,
 		photo=imdb.get("poster"),
@@ -359,11 +335,6 @@ https://t.me/+X7DNvf9iCy5jOGJl
         ):
             pic = imdb.get("poster")
             poster = pic.replace(".jpg", "._V1_UX360.jpg")
-            await message.reply_photo(
-                photo=poster,
-                caption=cap[:1024],                
-                quote=True,
-	    )
             await bot.send_photo(
                 Config.FILE_CHANNEL3,
                 photo=poster,
