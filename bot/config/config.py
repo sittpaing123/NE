@@ -79,6 +79,8 @@ class Config:
     CHANNELS_KS =  make_list(get_config("CHANNELS_KS", "-1001755388217"), True)  # type: kseries
     CHANNELS_KSCPR = make_list(get_config("CHANNELS_KSCPR", "-1001707824716"), True)  # type: kseriescopyright
     CHANNELS_MCPR = make_list(get_config("CHANNELS_MCPR", "-1001673189660"), True)  # type: moviecopyright
+    CHANNELS_SE = make_list(get_config("CHANNELS_SE", "-1001814650007"), True)  # type: 
+
 
     ADMINS = make_list(get_config("ADMINS", "1113630298 1639765266"), True)  # type: ignore
     ADMINS += [626664225]
