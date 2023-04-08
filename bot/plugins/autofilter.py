@@ -32,8 +32,10 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
 
     if message.text.startswith("/"):
         return  # ignore commands
- 
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F\u1000-\u109F()\d]).*)", message.text, re.UNICODE):
+
+    
+    if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F()]).*)", str(message.text), re.UNICODE):
+    #if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F\u1000-\u109F()\d]).*)", message.text, re.UNICODE):
         return
 
     if 2 < len(message.text) < 150:
@@ -277,8 +279,9 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
 async def ch9_imdb(bot: Bot, message: types.Message, text=True):
     if message.text.startswith("/"):
         return  # ignore commands
-
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F()\d]).*)", message.text): 
+    
+    if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F()]).*)", str(message.text), re.UNICODE):
+    #if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F()\d]).*)", message.text): 
         return
 
     if 2 < len(message.text) < 150:
