@@ -1,9 +1,6 @@
 import math
 import re
 import asyncio
-import requests
-import aiohttp
-from bs4 import BeautifulSoup
 from bot import Bot
 from pyrogram import enums, errors, filters, types
 
@@ -30,23 +27,6 @@ async def auto_filter(bot: Bot, message: types.Message, text=True):
 
 
 
-async def get_poster(search: str, file: str) -> dict:
-    imdb = {}
-    url = f"https://www.myanmaryoutubechannel.com/category/movie"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            soup = BeautifulSoup(await response.text(), 'html.parser')
-            movies = soup.find_all('div', {'class': 'post-preview'})
-            for movie in movies:
-                title = movie.find('h3', {'class': 'post-title'}).text.strip()
-                if search.lower() in title.lower():
-                    imdb['title'] = title
-                    imdb['description'] = movie.find('div', {'class': 'post-content'}).text.strip()
-                    poster_url = movie.find('img', {'class': 'wp-post-image'})['src']
-                    img_data = await session.get(poster_url)
-                    imdb['poster'] = InputFile(BytesIO(await img_data.read()), file)
-                    break
-    return imdb
 
 async def ch1_give_filter(bot: Bot, message: types.Message):
 
@@ -69,8 +49,8 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
     key = f"{message.chat.id}-{message.id}"
 
     Cache.BUTTONS[key] = search
-
-    if settings["IMDB"] and not settings.get("MYANMAR_POSTER"):  # type: ignore
+    
+    if settings["IMDB"]:  # type: ignore
         imdb = await get_poster(search, file=(files[0])["file_name"])
     else:
         imdb = {}
