@@ -243,7 +243,7 @@ async def get_poster(query: str, bulk: bool = False, imdb_id: int = False, file:
     
     # download your favorite image and open it with PIL
     async with aiohttp.ClientSession() as session:
-        async with session.get('https://example.com/my_favorite_image.png') as response:
+        async with session.get('https://graph.org/file/4fcdac4a67213abc73460.jpg') as response:
             favorite_img_bytes = await response.read()
     favorite_img = Image.open(BytesIO(favorite_img_bytes))
     
