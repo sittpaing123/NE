@@ -9,7 +9,7 @@ from ..database import a_filter
 from ..database import configDB as config_db
 from ..utils.botTools import check_fsub, format_buttons, get_size, parse_link
 from ..utils.cache import Cache
-from ..utils.imdbHelpers import get_poster
+from ..utils.imdbHelpers import get_poster, get_photo
 from ..utils.logger import LOGGER
 
 log = LOGGER(__name__)
@@ -52,10 +52,11 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
 
     Cache.BUTTONS[key] = search
     
-    if settings["IMDB"]:  # type: ignore
-        imdb = await get_poster(search, file=(files[0])["file_name"])
+    if settings["IMDB"]:
+        imdb = await get_photo(search, file=(files[0])["file_name"])
     else:
-        imdb = {}
+        imdb = await get_poster(search, file=(files[0])["file_name"])
+
     Cache.SEARCH_DATA[key] = files, offset, total_results, imdb, settings
     if not settings.get("DOWNLOAD_BUTTON"):  # type: ignore
         btn = await format_buttons(files, settings["CHANNEL"])  # type: ignore
