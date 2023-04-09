@@ -53,9 +53,9 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
     Cache.BUTTONS[key] = search
     
     if settings["IMDB"]:
-        imdb = await get_photo(search, file=(files[0])["file_name"])
-    else:
         imdb = await get_poster(search, file=(files[0])["file_name"])
+    else:
+        imdb = {}
 
     Cache.SEARCH_DATA[key] = files, offset, total_results, imdb, settings
     if not settings.get("DOWNLOAD_BUTTON"):  # type: ignore
