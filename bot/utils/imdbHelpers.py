@@ -4,11 +4,6 @@ import time
 from typing import List
 from urllib.parse import quote, urljoin
 
-import re
-import aiohttp
-from PIL import Image
-from io import BytesIO
-
 from imdbpie import Imdb
 from trans import trans
 
@@ -196,24 +191,25 @@ class IMDB(Imdb):
 IMDb = IMDB()
 
 
-
-async def get_poster(query: str, bulk: bool = False, imdb_id: int = False, file: str = None) -> dict:
+async def get_poster(
+    query: str, bulk: bool = False, imdb_id: int = False, file: str = None  # type: ignore
+) -> dict:
     if not imdb_id:
-        query = query.strip().lower()
+        query = (query.strip()).lower()
         title = query
         year = re.findall(r"[1-2]\d{3}$", query, re.IGNORECASE)
         if year:
-            year = year[0]
-            title = query.replace(year, "").strip()
+            year = list_to_str(year[:1])
+            title = (query.replace(year, "")).strip()
         elif file is not None:
             year = re.findall(r"[1-2]\d{3}", file, re.IGNORECASE)
             if year:
-                year = year[0]
+                year = list_to_str(year[:1])
         else:
             year = None
         movie_id = await IMDb.searchMovie(title.lower())
         if not movie_id:
-            return None
+            return None  # type: ignore
         if year:
             filtered = list(filter(lambda k: str(k.get("year")) == str(year), movie_id))
             if not filtered:
@@ -224,7 +220,7 @@ async def get_poster(query: str, bulk: bool = False, imdb_id: int = False, file:
         if not movie_id:
             movie_id = filtered
         if bulk:
-            return movie_id
+            return movie_id  # type: ignore
         movie_id = movie_id[0]["imdb_id"]
     else:
         movie_id = query
@@ -234,32 +230,4 @@ async def get_poster(query: str, bulk: bool = False, imdb_id: int = False, file:
     movie = await IMDb.getInfo(movie_id)
     if not movie:
         return None
-    
-    # download the poster image and open it with PIL
-    async with aiohttp.ClientSession() as session:
-        async with session.get(movie['poster']) as response:
-            poster_bytes = await response.read()
-    poster_img = Image.open(BytesIO(poster_bytes))
-    
-    # download your favorite image and open it with PIL
-    async with aiohttp.ClientSession() as session:
-        async with session.get('https://graph.org/file/4fcdac4a67213abc73460.jpg') as response:
-            favorite_img_bytes = await response.read()
-    favorite_img = Image.open(BytesIO(favorite_img_bytes))
-    
-    # resize the favorite image to fit on top of the poster
-    max_size = (poster_img.width // 2, poster_img.height // 2)
-    favorite_img.thumbnail(max_size)
-    
-    # paste the favorite image on top of the poster
-    x = poster_img.width - favorite_img.width
-    y = poster_img.height - favorite_img.height
-    poster_img.paste(favorite_img, (x, y))
-    
-    # convert the modified poster image to bytes and return it
-    output_buffer = BytesIO()
-    poster_img.save(output_buffer, format='PNG')
-    poster_bytes = output_buffer.getvalue()
-    
-    return {'poster': poster_bytes}
-
+    return movie
