@@ -240,7 +240,7 @@ async def get_photo(query: str, file: str = None) -> dict:
         query = (query.strip()).lower()
         title = query
         movie_id = await IMDb.searchMovie(title.lower())
-        movie = await imdb.get_movie(movie_id)
+        movie = await IMDb.getInfo(movie_id)
 
         title = movie["title"]
         year = movie["year"]
