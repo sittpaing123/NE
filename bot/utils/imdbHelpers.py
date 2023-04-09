@@ -11,6 +11,9 @@ from ..config import Config
 from .tools import run_in_thread
 
 from googletrans import Translator
+import logging
+
+log = logging.getLogger(__name__)
 
 translator = Translator()
 
