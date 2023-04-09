@@ -75,9 +75,9 @@ class Config:
     )
     TEMPLATE4 = get_config(
         "IMDB_TEMPLATE",
-        """<b>🏷 𝗧𝗶𝘁𝗹𝗲 :</b>{title}</a>  {year}</a> - #{kind}
+        """<b>🏷 𝗧𝗶𝘁𝗹𝗲 :</b>{title}</a>  {year}</a> -
         
-🌟 𝐑𝐚𝐭𝐢𝐧𝐠    : <a href={url}/ratings>{rating}</a> / 10 ({votes} 𝐮𝐬𝐞𝐫 𝐫𝐚𝐭𝐢𝐧𝐠𝐬.)
+🌟 𝐑𝐚𝐭𝐢𝐧𝐠    : {rating}</a> / 10 ({votes} 𝐮𝐬𝐞𝐫 𝐫𝐚𝐭𝐢𝐧𝐠𝐬.)
 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime} Minutes
 📆 𝗥𝗲𝗹𝗲𝗮𝘀𝗲  : {release_date}
 🎭 𝗚𝗲𝗻𝗿𝗲𝘀   : #{genres}
