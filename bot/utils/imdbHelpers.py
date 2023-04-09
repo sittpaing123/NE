@@ -239,8 +239,11 @@ async def get_photo(query: str, file: str = None) -> dict:
     try:
         query = (query.strip()).lower()
         title = query
-        movie_id = await IMDb.searchMovie(title.lower())
-        movie = await IMDb.getInfo2(movie_id)
+        movie_results = await IMDb.searchMovie(title.lower())
+        if not movie_results:
+            return {}
+        movie_id = movie_results[0]["imdb_id"]
+        movie = await IMDb.getInfo(movie_id)
 
         title = movie["title"]
         year = movie["year"]
@@ -260,40 +263,3 @@ async def get_photo(query: str, file: str = None) -> dict:
     except Exception as e:
         log.exception(e)
         return {}
-
-async def getInfo2(self, imdbID: str) -> Optional[Dict[str, Any]]:
-    imdbID = imdbID.lower()
-    if imdbID in self.titleCache:
-        return self.titleCache[imdbID]
-    else:
-        movie = await self.getMovie(imdbID)
-        if movie:
-            self.titleCache[imdbID] = movie
-            return movie
-        else:
-            return None
-
-async def getMovie(self, imdbID: str) -> Optional[Dict[str, Any]]:
-    try:
-        url = f"https://www.imdb.com/title/{imdbID}"
-        soup = await self.getSoup(url)
-        title = self.getTitle(soup)
-        year = self.getYear(soup)
-        rating = self.getRating(soup)
-        runtime = self.getRuntime(soup)
-        genres = self.getGenres(soup)
-        plot = self.getPlot(soup)
-        poster_url = self.getPosterUrl(soup)
-        movie = {
-            "title": title,
-            "year": year,
-            "rating": rating,
-            "runtime": runtime,
-            "genres": genres,
-            "plot": plot,
-            "poster_url": poster_url
-        }
-        return movie
-    except Exception as e:
-        log.exception(e)
-        return None
