@@ -87,7 +87,7 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
         ]
 
     if imdb:
-        cap = Config.TEMPLATE4.format(  # type: ignore
+        cap = Config.TEMPLATE.format(  # type: ignore
             query=search,
             **imdb,
             **locals(),
