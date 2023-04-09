@@ -237,8 +237,9 @@ async def get_poster(
 
 async def get_photo(query: str, file: str = None) -> dict:
     try:
-        results = await IMDb.searchMovie(query)
-        movie_id = results[0].getID()
+        query = (query.strip()).lower()
+        title = query
+        movie_id = await IMDb.searchMovie(title.lower())
         movie = await imdb.get_movie(movie_id)
 
         title = movie["title"]
