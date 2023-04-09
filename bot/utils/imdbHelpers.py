@@ -231,3 +231,29 @@ async def get_poster(
     if not movie:
         return None
     return movie
+
+async def get_photo(query: str, file: str = None) -> dict:
+    try:
+        results = await imdb.search_movie(query)
+        movie_id = results[0].getID()
+        movie = await imdb.get_movie(movie_id)
+
+        title = movie["title"]
+        year = movie["year"]
+        rating = movie["rating"]
+        runtime = movie["runtimes"][0]
+        summary = movie["plot"][0].split("::")[0]
+        photo_url = movie["cover url"]
+        
+        return {
+            "title": title,
+            "year": year,
+            "rating": rating,
+            "runtime": runtime,
+            "summary": summary,
+            "photo": photo_url
+        }
+    except Exception as e:
+        log.exception(e)
+        return {}
+
