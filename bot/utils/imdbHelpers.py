@@ -239,19 +239,16 @@ async def get_photo(query: str, file: str = None) -> dict:
     try:
         query = (query.strip()).lower()
         title = query
-        movie_results = await IMDb.searchMovie(title.lower())
-        if not movie_results:
-            return {}
-        movie_id = movie_results[0]["imdb_id"]
-        movie = await IMDb.getInfo(movie_id)
+        movie_id = await IMDb.searchMovie(title.lower())
+        movie = await IMDb.getInfo(movie_id[0]["imdb_id"])
 
-        title = movie["title"]
-        year = movie["year"]
-        rating = movie["rating"]
-        runtime = movie["runtimes"][0]
-        summary = movie["plot"][0].split("::")[0]
-        photo_url = movie["cover url"]
-        
+        title = movie.get("title", "N/A")
+        year = movie.get("year", "N/A")
+        rating = movie.get("rating", "N/A")
+        runtime = movie.get("runtimes", ["N/A"])[0]
+        summary = movie.get("plot", ["N/A"])[0].split("::")[0]
+        photo_url = movie.get("cover url", "N/A")
+
         return {
             "title": title,
             "year": year,
