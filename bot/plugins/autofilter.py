@@ -1,5 +1,6 @@
 import math
 import re
+import random
 import asyncio
 from bot import Bot
 from pyrogram import enums, errors, filters, types
@@ -93,8 +94,48 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
             **locals(),
         )
     else:
+        cap2 = f"""────── • ADS • ──────
+
+အပျင်းပြေ အရင်းကြေ ပလေးဖိုအတွက် RBY99 မှ 
+မန်ဘာဝင်သူတွေအတွက် (3)ရက်တစ်ကြိမ် 
+Free-10000 ပေးနေပါပြီ
+
+RBY99 မှာဆိုရင် 
+-စလော့၊ငါးပစ်၊ဘင်းဂိုး ဂိမ်းများစွာနဲ့
+-ရှမ်းကိုးမီး
+-Sexy Girl လေးတွေရဲ့တိုက်ရိုက်လွှင့်အွန်လိုင်းကာစီနိုတွေအပြင်
+-ဘောလုံးပါလောင်းနိုင်လို ဂိမ်းအကောင့်တစ်ခုဖွင့်ရုံနဲ့တစ်နေရာတည်းမှာစုံစုံလင်လင်ကစားလိုရနေပြီနော်
+
+Viber-09 769 956 655 
+Viber Link 👉 https://jdb.link/rby99viber
+Telegram Link 👉 https://jdb.link/RBY99
+Website Link 👉 https://www.rby999.com/?pid=KP
+────── • ◆ • ──────
+"""
         cap = f"𝗤𝘂𝗲𝗿𝘆   : {search}\n𝗧𝗼𝘁𝗮𝗹    : {total_results}\n𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
 	
+        ADS = [
+            {"photo": "https://graph.org/file/4edb7572154920084cf18.jpg", "caption": f"""{cap2}
+
+{cap}"""},		
+            {"photo": "https://graph.org/file/cd008b438b8a1044bce46.jpg", "caption": f"""{cap2}
+
+{cap}"""},
+            {"photo": "https://graph.org/file/c4868d4d52a7ea5eaf11e.jpg", "caption": f"""{cap2}
+
+{cap}"""},
+            {"photo": "https://graph.org/file/a9a19f661ff1f55f659ce.jpg", "caption": f"""{cap2}
+
+{cap}"""},	
+            {"photo": "https://graph.org/file/c396d693f84c29c2c1a82.jpg", "caption": f"""{cap2}
+
+{cap}"""},
+            {"photo": "https://graph.org/file/18d697922d4843afe1a08.jpg", "caption": f"""{cap2}
+
+{cap}"""},
+		
+        ]
+
     if imdb and imdb.get("poster") and settings["IMDB_POSTER"]:  # type: ignore
         try:
             await message.reply_photo(
@@ -122,12 +163,14 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
                 cap, reply_markup=types.InlineKeyboardMarkup(btn), quote=True
             )
     else:
-        await message.reply_text(
-            cap,
+        ad = random.choice(ADS)
+        photo_url = ad["photo"]
+        caption = ad["caption"]
+        await message.reply_photo(
+            photo=photo_url,
+            caption=caption,
             reply_markup=types.InlineKeyboardMarkup(btn),
-            quote=True,
-            disable_web_page_preview=True,
-        )
+            quote=True)
 
 
 @Bot.on_callback_query(filters.regex(r"^next"))  # type: ignore
