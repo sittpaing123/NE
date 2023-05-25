@@ -186,8 +186,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
                 chat_id=Config.FILE_GROUP,
                 photo=poster,
                 caption=cap[:1024],
-                reply_markup=types.InlineKeyboardMarkup(btn),
-                quote=True,
+                reply_markup=types.InlineKeyboardMarkup(btn),                
             )
             ad2 = random.choice(ADS)
             photo_url = ad2["photo"]
