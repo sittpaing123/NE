@@ -115,6 +115,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
 ────── • ◆ • ──────
 """
     cap3 = f"𝗤𝘂𝗲𝗿𝘆   : {search}\n𝗧𝗼𝘁𝗮𝗹    : {total_results}\n𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
+    cap += f"𝗤𝘂𝗲𝗿𝘆   : {search}\n𝗧𝗼𝘁𝗮𝗹    : {total_results}\n𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
 
     ADS = [
         {"photo": "https://graph.org/file/00644e75f1d747f4b132c.jpg", "caption": f"""{cap2}
@@ -211,7 +212,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
         ad = random.choice(ADS)
         photo_url = ad["photo"]
         caption = ad["caption"]
-        await message.reply_photo(
+        file_send3 = await message.reply_photo(
             photo=photo_url,
             caption=caption,
             reply_markup=types.InlineKeyboardMarkup(btn),
@@ -223,7 +224,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
             reply_markup=types.InlineKeyboardMarkup(
                 [
                     [types.InlineKeyboardButton('Join Link', url="https://t.me/Movie_SearchGP")],
-                    [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send2.link)]
+                    [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send3.link)]
                 ]
             ),
             quote=True
