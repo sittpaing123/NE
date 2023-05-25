@@ -57,7 +57,7 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
         imdb = await get_poster(search, file=(files[0])["file_name"])
     else:
         imdb = {}
-
+    cap = f"𝗤𝘂𝗲𝗿𝘆  : {search}"
     Cache.SEARCH_DATA[key] = files, offset, total_results, imdb, settings
     if not settings.get("DOWNLOAD_BUTTON"):  # type: ignore
         btn = await format_buttons(files, settings["CHANNEL"])  # type: ignore
@@ -88,14 +88,14 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
         ]
 
     if imdb:
-        cap = Config.TEMPLATE.format(  # type: ignore
+        cap += Config.TEMPLATE.format(  # type: ignore
             query=search,
             **imdb,
             **locals(),
         )
     
     else:
-        cap = f"𝗤𝘂𝗲𝗿𝘆   : {search}\n𝗧𝗼𝘁𝗮𝗹    : {total_results}\n𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
+        cap += f"𝗤𝘂𝗲𝗿𝘆   : {search}\n𝗧𝗼𝘁𝗮𝗹    : {total_results}\n𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
     
     cap2 = f"""────── • ADS • ──────
 အပျင်းပြေ အရင်းကြေ ပလေးဖိုအတွက် RBY99 မှ 
