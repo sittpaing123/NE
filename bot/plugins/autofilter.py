@@ -57,7 +57,8 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
         imdb = await get_poster(search, file=(files[0])["file_name"])
     else:
         imdb = {}
-    cap = f"𝗤𝘂𝗲𝗿𝘆  : {search}\n\n"
+    cap = f"⚜️ 𝗤𝘂𝗲𝗿𝘆   : {search}\n🔰 𝗧𝗼𝘁𝗮𝗹    : {total_results}\n🙋🏻‍♂️ 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n"
+
     Cache.SEARCH_DATA[key] = files, offset, total_results, imdb, settings
     if not settings.get("DOWNLOAD_BUTTON"):  # type: ignore
         btn = await format_buttons(files, settings["CHANNEL"])  # type: ignore
@@ -96,7 +97,7 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
     
     else:
         cap += f"𝗤𝘂𝗲𝗿𝘆   : {search}\n𝗧𝗼𝘁𝗮𝗹    : {total_results}\n𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
-    
+
     cap2 = f"""────── • ADS • ──────
 အပျင်းပြေ အရင်းကြေ ပလေးဖိုအတွက် RBY99 မှ 
 မန်ဘာဝင်သူတွေအတွက် (3)ရက်တစ်ကြိမ် 
@@ -115,7 +116,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
 ────── • ◆ • ──────
 """
     cap3 = f"⚜️ 𝗤𝘂𝗲𝗿𝘆   : {search}\n🔰 𝗧𝗼𝘁𝗮𝗹    : {total_results}\n🙋🏻‍♂️𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+X7DNvf9iCy5jOGJl'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
-    cap += f"⚜️ 𝗤𝘂𝗲𝗿𝘆   : {search}\n🔰 𝗧𝗼𝘁𝗮𝗹    : {total_results}\n🙋🏻‍♂️ 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+X7DNvf9iCy5jOGJl'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
+    cap += f"</b><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+X7DNvf9iCy5jOGJl'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/Movie_SearchGP'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>"
 
     ADS = [
         {"photo": "https://graph.org/file/00644e75f1d747f4b132c.jpg", "caption": f"""{cap2}
