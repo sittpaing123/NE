@@ -126,7 +126,7 @@ class Config:
     )
 
     IMDB = True
-    CHANNEL = True
+    CHANNEL = False
     IMDB_POSTER = True
     PM_IMDB = True
     PM_IMDB_POSTER = True
@@ -138,3 +138,4 @@ class Config:
     FILE_CHANNEL = int(get_config("FILE_CHANNEL" , "-1001615715585"))
     FILE_CHANNEL2 = int(get_config("FILE_CHANNEL2" , "-1001967826659"))
     FILE_CHANNEL3 = int(get_config("FILE_CHANNEL3" , "-1001564382219"))
+    FILE_GROUP = int(environ.get('FILE_GROUP', "-1001804560420"))
