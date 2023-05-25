@@ -116,7 +116,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
 ────── • ◆ • ──────
 """
     cap3 = f"⚜️ 𝗤𝘂𝗲𝗿𝘆   : {search}\n🔰 𝗧𝗼𝘁𝗮𝗹    : {total_results}\n🙋🏻‍♂️𝗥𝗲𝗾𝘂𝗲𝘀𝘁 : {message.from_user.mention} \n\n</b><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+X7DNvf9iCy5jOGJl'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>"
-    cap += f"</b><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+X7DNvf9iCy5jOGJl'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/Movie_SearchGP'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>"
+    cap += f"</b><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+X7DNvf9iCy5jOGJl'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>\n<a href='https://t.me/+6lHs-byrjxczY2U1'>©️ 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a><a href='https://t.me/+AGntow9MZbs2MjRh'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a>"
 
     ADS = [
         {"photo": "https://graph.org/file/00644e75f1d747f4b132c.jpg", "caption": f"""{cap2}
@@ -170,7 +170,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
                 caption=caption,
                 reply_markup=types.InlineKeyboardMarkup(
                     [
-                        [types.InlineKeyboardButton('Join link', url="https://t.me/Movie_SearchGP")],
+                        [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
                         [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send.link)]
                     ]
                 ),
@@ -197,7 +197,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
                 caption=caption,
                 reply_markup=types.InlineKeyboardMarkup(
                     [
-                        [types.InlineKeyboardButton('Join link', url="https://t.me/Movie_SearchGP")],
+                        [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
                         [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send2.link)]
                     ]
                 ),
@@ -223,7 +223,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
             caption=caption,
             reply_markup=types.InlineKeyboardMarkup(
                 [
-                    [types.InlineKeyboardButton('Join Link', url="https://t.me/Movie_SearchGP")],
+                    [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
                     [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send3.link)]
                 ]
             ),
