@@ -57,7 +57,7 @@ async def ch1_give_filter(bot: Bot, message: types.Message):
         imdb = await get_poster(search, file=(files[0])["file_name"])
     else:
         imdb = {}
-    cap = f"𝗤𝘂𝗲𝗿𝘆  : {search}"
+    cap = f"𝗤𝘂𝗲𝗿𝘆  : {search}\n\n"
     Cache.SEARCH_DATA[key] = files, offset, total_results, imdb, settings
     if not settings.get("DOWNLOAD_BUTTON"):  # type: ignore
         btn = await format_buttons(files, settings["CHANNEL"])  # type: ignore
