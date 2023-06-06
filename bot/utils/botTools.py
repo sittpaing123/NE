@@ -135,7 +135,7 @@ async def format_buttons(files: list, channel: bool):
         btn = [
             [
                 types.InlineKeyboardButton(
-                    text=f"🔮 {file['file_name']} 📥[{get_size(file['file_size'])}] 🇲🇲 {file['caption']}",
+                    text=f"{file['file_name']} [{get_size(file['file_size'])}]",
                     url=f'{(await parse_link(file["chat_id"], file["message_id"]))}',
                 ),
             ]
@@ -145,14 +145,22 @@ async def format_buttons(files: list, channel: bool):
         btn = [
             [
                 types.InlineKeyboardButton(
-                    text=f"🔮 {file['file_name']} 📥 [{get_size(file['file_size'])}]  🇲🇲 {file['caption']}",
+                    text=f"{file['file_name']} [{get_size(file['file_size'])}] ",
                     callback_data=f"file {file['_id']}",
                 ),
             ]
             for file in files
         ]
-    return btn
+    for row in btn:
+        for button in row:
+            caption = button.text.lower()
+            caption = caption.translate(str.maketrans(
+                "abcdefghijklmnopqrstuvwxyz0123456789",
+                "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹"
+            ))
+            button.text = caption
 
+    return btn
 
 FORCE_TEXT = """ 🗣 သင်သည် အောက်တွင်ပေးထားသော ကျွန်ုပ်တို့၏ Back-up ချန်နယ်တွင် မရှိသောကြောင့် ရုပ်ရှင်ဖိုင်ကို မရနိုင်ပါ။
 ရုပ်ရှင်ဖိုင်ကို လိုချင်ပါက၊ အောက်ဖော်ပြပါ '🍿ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ🍿' ခလုတ်ကို နှိပ်ပြီး ကျွန်ုပ်တို့၏ အရန်ချန်နယ်သို့ ဝင်ရောက်ပါ၊ 
