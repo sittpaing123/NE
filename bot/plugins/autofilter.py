@@ -174,7 +174,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
                 )
         else:
             file_send = await bot.send_photo(
-                chat_id=Config.FILE_GROUP2,
+                chat_id=Config.FILE_GROUP,
                 photo=imdb.get("poster"),
                 caption=cap[:1024],
                 reply_markup=types.InlineKeyboardMarkup(btn),
