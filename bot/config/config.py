@@ -48,7 +48,6 @@ class Config:
         
 🌟 𝐑𝐚𝐭𝐢𝐧𝐠    : <a href={url}/ratings>{rating}</a> / 10 ({votes} 𝐮𝐬𝐞𝐫 𝐫𝐚𝐭𝐢𝐧𝐠𝐬.)
 📀 𝐑𝐮𝐧𝐓𝐢𝐦𝐞 : {runtime} Minutes
-📆 𝗥𝗲𝗹𝗲𝗮𝘀𝗲  : {release_date}
 🎭 𝗚𝗲𝗻𝗿𝗲𝘀   : #{genres}
 👥 𝗖𝗮𝘀𝘁  : #{cast}
         
@@ -127,6 +126,7 @@ class Config:
     PM_IMDB_POSTER = True
     PHOTO_FILTER = True
     CH_POST = False
+    TEXT_LINK = False
 
 
     USE_CAPTION_FILTER = get_config("USE_CAPTION_FILTER", True, True)  # type: ignore
