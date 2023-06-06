@@ -155,9 +155,26 @@ Website Link 👉 https://www.rby999.com/?pid=KP
     ]
 
     if imdb and imdb.get("poster") and settings["IMDB_POSTER"]:
-        try:
+        if not settings["TEXT_LINK"]:
+            try:
+                await message.reply_photo(
+                    photo=imdb.get("poster"),  # type: ignore
+                    caption=cap[:1024],
+                    reply_markup=types.InlineKeyboardMarkup(btn),
+                    quote=True,
+                )
+            except (errors.MediaEmpty, errors.PhotoInvalidDimensions, errors.WebpageMediaEmpty):
+                pic = imdb.get("poster")
+                poster = pic.replace(".jpg", "._V1_UX360.jpg")
+                await message.reply_photo(
+                    photo=poster,
+                    caption=cap[:1024],
+                    reply_markup=types.InlineKeyboardMarkup(btn),
+                    quote=True,
+                )
+        else:
             file_send = await bot.send_photo(
-                chat_id=Config.FILE_GROUP,
+                chat_id=Config.FILE_GROUP2,
                 photo=imdb.get("poster"),
                 caption=cap[:1024],
                 reply_markup=types.InlineKeyboardMarkup(btn),
@@ -176,60 +193,38 @@ Website Link 👉 https://www.rby999.com/?pid=KP
                 ),
                 quote=True,
             )
-        except (
-            errors.MediaEmpty,
-            errors.PhotoInvalidDimensions,
-            errors.WebpageMediaEmpty,
-        ):
-            pic = imdb.get("poster")
-            poster = pic.replace(".jpg", "._V1_UX360.jpg")
-            file_send2 = await bot.send_photo(
-                chat_id=Config.FILE_GROUP,
-                photo=poster,
-                caption=cap[:1024],
-                reply_markup=types.InlineKeyboardMarkup(btn),                
+    else:
+        if not settings["TEXT_LINK"]:
+            ad = random.choice(ADS)
+            photo_url = ad["photo"]
+            caption = ad["caption"]
+            await message.reply_photo(
+                photo=photo_url,
+                caption=caption,
+                reply_markup=types.InlineKeyboardMarkup(btn),
+                quote=True
             )
-            ad2 = random.choice(ADS)
-            photo_url = ad2["photo"]
-            caption = ad2["caption"]
+        else:
+            ad = random.choice(ADS)
+            photo_url = ad["photo"]
+            caption = ad["caption"]
+            file_send3 = await message.reply_photo(
+                photo=photo_url,
+                caption=caption,
+                reply_markup=types.InlineKeyboardMarkup(btn),
+                quote=True
+            )
             await message.reply_photo(
                 photo=photo_url,
                 caption=caption,
                 reply_markup=types.InlineKeyboardMarkup(
                     [
                         [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
-                        [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send2.link)]
+                        [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send3.link)]
                     ]
                 ),
                 quote=True
             )
-        except Exception as e:
-            log.exception(e)
-            await message.reply_text(
-                cap, reply_markup=types.InlineKeyboardMarkup(btn), quote=True
-            )
-    else:
-        ad = random.choice(ADS)
-        photo_url = ad["photo"]
-        caption = ad["caption"]
-        file_send3 = await message.reply_photo(
-            photo=photo_url,
-            caption=caption,
-            reply_markup=types.InlineKeyboardMarkup(btn),
-            quote=True
-        )
-        await message.reply_photo(
-            photo=photo_url,
-            caption=caption,
-            reply_markup=types.InlineKeyboardMarkup(
-                [
-                    [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
-                    [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send3.link)]
-                ]
-            ),
-            quote=True
-        )
-
 
 
 @Bot.on_callback_query(filters.regex(r"^next"))  # type: ignore
@@ -348,14 +343,14 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
             ),
                 reply_to_message_id=query.message.id,
         )
-        caption1 = f"Hi {query.from_user.mention} \n\nအချောလေး ရှာတဲ့ {file_info['file_name']}  ဇာတ်ကား အဆင့်သင့်ပါ ⬇️\n\nဝင်မရရင် Join Link ကို Join ပါ "
+        caption1 = f"Hi {query.from_user.mention} \n\nအချောလေး ရှာတဲ့ <a href='{file_send.link}'>{file_info['file_name']}</a> ဇာတ်ကား အဆင့်သင့်ပါ ⬇️\n\nဝင်မရရင် <a href='https://t.me/+H7ERsk_04EoxOTU1'>🍿 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 🍿</a> ကို Join ပါ \n\n"
         settings = await config_db.get_settings(f"SETTINGS_{query.message.chat.id}")
         if settings["DOWNLOAD_BUTTON"]:
             await query.message.reply_text(                
                 caption1,
                 reply_markup=types.InlineKeyboardMarkup(
                     [
-                        [types.InlineKeyboardButton('Join Channel Link', url="https://t.me/+H7ERsk_04EoxOTU1")],
+                        [types.InlineKeyboardButton('🍿 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 🍿', url="https://t.me/+H7ERsk_04EoxOTU1")],
                         [types.InlineKeyboardButton(f'📥 {file_info["file_name"]} {file_info["caption"]}📥', url=file_send.link)]
                     ]
                 ),
@@ -368,7 +363,7 @@ async def handle_file(bot: Bot, query: types.CallbackQuery):
                 text=caption1,
                 reply_markup=types.InlineKeyboardMarkup(
                     [
-                        [types.InlineKeyboardButton( 'Join Channel link', url="https://t.me/+H7ERsk_04EoxOTU1")],
+                        [types.InlineKeyboardButton( '🍿 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 🍿', url="https://t.me/+H7ERsk_04EoxOTU1")],
                         [types.InlineKeyboardButton(f'📥 {file_info["file_name"]} {file_info["caption"]} 📥', url=file_send.link)]
                     ]
                 )
