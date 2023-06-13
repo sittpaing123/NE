@@ -154,6 +154,7 @@ Website Link 👉 https://www.rby999.com/?pid=KP
 {cap3}"""},
     ]
 
+
     if imdb and imdb.get("poster") and settings["IMDB_POSTER"]:
         if not settings["TEXT_LINK"]:
             try:
@@ -173,26 +174,47 @@ Website Link 👉 https://www.rby999.com/?pid=KP
                     quote=True,
                 )
         else:
-            file_send = await bot.send_photo(
-                chat_id=Config.FILE_GROUP,
-                photo=imdb.get("poster"),
-                caption=cap[:1024],
-                reply_markup=types.InlineKeyboardMarkup(btn),
-            )
-            ad1 = random.choice(ADS)
-            photo_url = ad1["photo"]
-            caption = ad1["caption"]
-            await message.reply_photo(
-                photo=photo_url,
-                caption=caption,
-                reply_markup=types.InlineKeyboardMarkup(
-                    [
-                        [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
-                        [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send.link)]
-                    ]
-                ),
-                quote=True,
-            )
+            try:
+                file_send = await bot.send_photo(
+                    chat_id=Config.FILE_GROUP,
+                    photo=imdb.get("poster"),
+                    caption=cap[:1024],
+                    reply_markup=types.InlineKeyboardMarkup(btn),
+                )
+                await message.reply_photo(
+                    photo=imdb.get("poster"),
+                    caption=cap[:1024],
+                    reply_markup=types.InlineKeyboardMarkup(
+                        [
+                            [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
+                            [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send.link)]
+                        ]
+                    ),
+                    quote=True,
+                )
+            except (errors.MediaEmpty, errors.PhotoInvalidDimensions, errors.WebpageMediaEmpty):
+                pic = imdb.get("poster")
+                poster = pic.replace(".jpg", "._V1_UX360.jpg")
+                file_send2 = await bot.send_photo(
+                    chat_id=Config.FILE_GROUP,
+                    photo=poster,
+                    caption=cap[:1024],
+                    reply_markup=types.InlineKeyboardMarkup(btn),
+                )
+                ad1 = random.choice(ADS)
+                photo_url = ad1["photo"]
+                caption = ad1["caption"]
+                await message.reply_photo(
+                    photo=photo_url,
+                    caption=caption,
+                    reply_markup=types.InlineKeyboardMarkup(
+                        [
+                            [types.InlineKeyboardButton('ဝင်မရရင်ဒီကိုအရင်နှိပ် Join ပေးပါ', url="https://t.me/+AGntow9MZbs2MjRh")],
+                            [types.InlineKeyboardButton(f'📥 {search} 📥', url=file_send2.link)]
+                        ]
+                    ),
+                    quote=True,
+                )
     else:
         if not settings["TEXT_LINK"]:
             ad = random.choice(ADS)
@@ -208,11 +230,11 @@ Website Link 👉 https://www.rby999.com/?pid=KP
             ad = random.choice(ADS)
             photo_url = ad["photo"]
             caption = ad["caption"]
-            file_send3 = await message.reply_photo(
-                photo=photo_url,
-                caption=caption,
+            file_send3 = await bot.send_photo(
+                chat_id=Config.FILE_GROUP,
+                photo=random.choice(Config.PICS),
+                caption=cap,
                 reply_markup=types.InlineKeyboardMarkup(btn),
-                quote=True
             )
             await message.reply_photo(
                 photo=photo_url,
