@@ -372,17 +372,17 @@ async def ref_get_stats(bot: Bot, query: types.CallbackQuery):
     disk_usage = psutil.disk_usage('/').percent
     buttons = [[types.InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷 ♻️', callback_data='rfrsh')]]
     text = (
-        f"**Stats**\n\nTotal Files: `{count}`"
-        f"\nTotal Users: {users}"
-        f"\nTotal DB Used: `{get_size(size)}`"
-        f"\nFree: `{get_size(free)}`"
+        f"**Stats**\n\nTotal Files: {count}"
+        f"\n\nTotal Users: {users}"
+        f"\nTotal DB Used: {get_size(size)}"
+        f"\nFree: {get_size(free)}"
         f"\n\nUptime: {currentTime}"
         f"\nCPU Usage: {cpu_usage}%"
-        f"\nRAM Usage: {ram_usage} %"        
+        f"\nRAM Usage: {ram_usage}%"        
         f"\nTotal Disk Space: {total}"
         f"\nUsed Space: {used} ({disk_usage}%)"
         f"\nFree Space: {free2}"
-        f"\n\nPower By @KOPAINGLAY15", 
+        f"\n\nPower By @KOPAINGLAY15"
     )
     await query.message.edit_text(
         text,
