@@ -355,6 +355,38 @@ async def get_stats(_, msg: types.Message):
         parse_mode=enums.ParseMode.HTML    
     )
 
+@Bot.on_message(filters.command("status"))  # type: ignore
+async def get_status_sta(_, msg: types.Message):
+    count = await a_filter.col.count_documents({})  # type: ignore
+    size = (await a_filter.db.command("dbstats"))["dataSize"]  # type: ignore
+    users = await usersDB.total_users_count()
+    free = 536870912 - size
+
+    currentTime = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - BOT_START_TIME))
+    total, used, free2 = shutil.disk_usage(".")
+    total = humanbytes(total)
+    used = humanbytes(used)
+    free2 = humanbytes(free2)
+    cpu_usage = psutil.cpu_percent()
+    ram_usage = psutil.virtual_memory().percent
+    disk_usage = psutil.disk_usage('/').percent
+    buttons = [[types.InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷 ♻️', callback_data='rfrsh')]]
+    await msg.reply(
+        f"**Stats**\n\nTotal Files: `{count}`"
+        f"\nTotal Users: {users}"
+        f"\nTotal DB Used: `{get_size(size)}`"
+        f"\nFree: `{get_size(free)}`"
+        f"\n\nUptime: {currentTime}"
+        f"\nCPU Usage: {cpu_usage}%"
+        f"\nRAM Usage: {ram_usage}%"        
+        f"\nTotal Disk Space: {total}"
+        f"\nUsed Space: {used} ({disk_usage}%)"
+        f"\nFree Space: {free2}"
+        f"\n\nPower By @KOPAINGLAY15",
+        reply_markup=types.InlineKeyboardMarkup(buttons),
+        parse_mode=enums.ParseMode.HTML    
+    )
+
 @Bot.on_callback_query(filters.regex("rfrsh"))  # type: ignore
 async def ref_get_stats(bot: Bot, query: types.CallbackQuery): 
     count = await a_filter.col.count_documents({})  # type: ignore
@@ -373,7 +405,7 @@ async def ref_get_stats(bot: Bot, query: types.CallbackQuery):
     buttons = [[types.InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷 ♻️', callback_data='rfrsh')]]
     text = (
         f"**Stats**\n\nTotal Files: {count}"
-        f"\n\nTotal Users: {users}"
+        f"\nTotal Users: {users}"
         f"\nTotal DB Used: {get_size(size)}"
         f"\nFree: {get_size(free)}"
         f"\n\nUptime: {currentTime}"
