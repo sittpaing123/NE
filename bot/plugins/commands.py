@@ -382,9 +382,7 @@ async def ref_get_stats(bot: Bot, query: types.CallbackQuery):
         f"\nTotal Disk Space: {total}"
         f"\nUsed Space: {used} ({disk_usage}%)"
         f"\nFree Space: {free2}"
-        f"\n\nPower By @KOPAINGLAY15",
-        reply_markup=types.InlineKeyboardMarkup(buttons),
-        parse_mode=enums.ParseMode.HTML    
+        f"\n\nPower By @KOPAINGLAY15", 
     )
     await query.message.edit_text(
         text,
