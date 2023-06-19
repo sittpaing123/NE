@@ -1,9 +1,9 @@
 import math
 import re
-
+import time
 from bot import Bot
 from pyrogram import errors, filters, types
-
+import re, asyncio, time, shutil, psutil, os, sys
 from ..config import Config
 from ..database import a_filter, usersDB
 from ..utils.botTools import (
@@ -12,6 +12,7 @@ from ..utils.botTools import (
     get_size,
     unpack_new_file_id,
     FORCE_TEXT,
+    humanbytes,
 )
 from ..utils.cache import Cache
 from ..utils.imdbHelpers import get_poster
@@ -135,7 +136,78 @@ async def start_handler(bot: Bot, msg: types.Message):
                         "🔖 Join Our Group to Use Me",
                         url="https://t.me/+X7DNvf9iCy5jOGJl",
                     )
-                ]
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 1",
+                        url="https://t.me/+_1Hs8V60HGs1NzA1",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 2",
+                        url="https://t.me/+z5lhEpxP5Go4MWM1",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 3",
+                        url="https://t.me/MKS_RequestGroup",
+                    ),
+                ],
+                [
+
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 4",
+                        url="https://t.me/Movie_Group_MMSUB",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 5",
+                        url="https://t.me/+cHMLAeatqKdlNGVl",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 6",
+                        url="https://t.me/+X7DNvf9iCy5jOGJl",
+                    ),
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 1",
+                        url="https://t.me/MKSVIPLINK",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 2",
+                        url="https://t.me/MKSVIPLINK2",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 3",
+                        url="https://t.me/+3xS_MTfvJSEzZjY1",
+                    ),
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 4",
+                        url="https://t.me/MKSMAINCHANNEL",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 5",
+                        url="https://t.me/MKSMAINCHANNEL2",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 6",
+                        url="https://t.me/kpmovielist",
+                    ),
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 7",
+                        url="https://t.me/+6lHs-byrjxczY2U1",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 8",
+                        url="https://t.me/ONGOING_MKS",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 9",
+                        url="https://t.me/Movie_Zone_KP",
+                    ),
+                ] 
             ]
         ),
         disable_web_page_preview=True,
@@ -165,7 +237,78 @@ async def home_handler(bot: Bot, query: types.CallbackQuery):
                         "🔖 Join Our Group to Use Me",
                         url="https://t.me/+X7DNvf9iCy5jOGJl",
                     )
-                ]
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 1",
+                        url="https://t.me/+_1Hs8V60HGs1NzA1",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 2",
+                        url="https://t.me/+z5lhEpxP5Go4MWM1",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 3",
+                        url="https://t.me/MKS_RequestGroup",
+                    ),
+                ],
+                [
+
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 4",
+                        url="https://t.me/Movie_Group_MMSUB",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 5",
+                        url="https://t.me/+cHMLAeatqKdlNGVl",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 GROUP 6",
+                        url="https://t.me/+X7DNvf9iCy5jOGJl",
+                    ),
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 1",
+                        url="https://t.me/MKSVIPLINK",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 2",
+                        url="https://t.me/MKSVIPLINK2",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 3",
+                        url="https://t.me/+3xS_MTfvJSEzZjY1",
+                    ),
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 4",
+                        url="https://t.me/MKSMAINCHANNEL",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 5",
+                        url="https://t.me/MKSMAINCHANNEL2",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 6",
+                        url="https://t.me/kpmovielist",
+                    ),
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 7",
+                        url="https://t.me/+6lHs-byrjxczY2U1",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 8",
+                        url="https://t.me/ONGOING_MKS",
+                    ),
+                    types.InlineKeyboardButton(
+                        "🔖 CHANNEL 9",
+                        url="https://t.me/Movie_Zone_KP",
+                    ),
+                ] 
             ]
         ),
         disable_web_page_preview=True,
@@ -183,13 +326,63 @@ async def get_stats(_, msg: types.Message):
     size = (await a_filter.db.command("dbstats"))["dataSize"]  # type: ignore
     users = await usersDB.total_users_count()
     free = 536870912 - size
+
+    currentTime = time.strftime("% Hh % Mm % Ss", time.gmtime(time.time() - BOT_START_TIME))
+    total, used, free2 = shutil.disk_usage(".")
+    total = humanbytes(total)
+    used = humanbytes(used)
+    free2 = humanbytes(free2)
+    cpu_usage = psutil.cpu_percent()
+    ram_usage = psutil.virtual_memory().percent
+    disk_usage = psutil.disk_usage('/').percent
+    buttons = [[types.InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷 ♻️', callback_data='rfrsh')]]
     await msg.reply(
         f"**Stats**\n\n**Total Files**: `{count}`"
         f"\nTotal Users: {users}"
         f"\n**Total DB Used:** `{get_size(size)}`"
         f"\n**Free:** `{get_size(free)}`"
+        f"\n\nUptime: {currentTime}"
+        f"\nCPU Usage: {cpu_usage}%"
+        f"\nRAM Usage: {ram_usage}%"        
+        f"\nTotal Disk Space: {total}"
+        f"\nUsed Space: {used} ({disk_usage}%)"
+        f"\nFree Space: {free2}"
+        f"\n\nPower By @KOPAINGLAY15",
+        reply_markup=types.InlineKeyboardMarkup(buttons),
+        parse_mode=enums.ParseMode.HTML    
     )
 
+@Bot.on_callback_query(filters.regex("rfrsh"))  # type: ignore
+async def ref_get_stats(bot: Bot, query: types.CallbackQuery): 
+    count = await a_filter.col.count_documents({})  # type: ignore
+    size = (await a_filter.db.command("dbstats"))["dataSize"]  # type: ignore
+    users = await usersDB.total_users_count()
+    free = 536870912 - size
+
+    currentTime = time.strftime("% Hh % Mm % Ss", time.gmtime(time.time() - BOT_START_TIME))
+    total, used, free2 = shutil.disk_usage(".")
+    total = humanbytes(total)
+    used = humanbytes(used)
+    free2 = humanbytes(free2)
+    cpu_usage = psutil.cpu_percent()
+    ram_usage = psutil.virtual_memory().percent
+    disk_usage = psutil.disk_usage('/').percent
+    buttons = [[types.InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷 ♻️', callback_data='rfrsh')]]
+    await msg.reply(
+        f"**Stats**\n\n**Total Files**: `{count}`"
+        f"\nTotal Users: {users}"
+        f"\n**Total DB Used:** `{get_size(size)}`"
+        f"\n**Free:** `{get_size(free)}`"
+        f"\n\nUptime: {currentTime}"
+        f"\nCPU Usage: {cpu_usage}%"
+        f"\nRAM Usage: {ram_usage}%"        
+        f"\nTotal Disk Space: {total}"
+        f"\nUsed Space: {used} ({disk_usage}%)"
+        f"\nFree Space: {free2}"
+        f"\n\nPower By @KOPAINGLAY15",
+        reply_markup=types.InlineKeyboardMarkup(buttons),
+        parse_mode=enums.ParseMode.HTML    
+    )
 
 @Bot.on_message(filters.command("delete") & filters.user(Config.ADMINS))  # type: ignore
 async def handleDelete(bot: Bot, msg: types.Message):
