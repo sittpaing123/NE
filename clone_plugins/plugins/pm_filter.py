@@ -4,18 +4,18 @@ import re
 import ast
 import math
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from bot.plugins.clone_plugins.Script import script
+from clone_plugins.Script import script
 import pyrogram
-from bot.plugins.clone_plugins.database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
+from clone_plugins.database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
-from bot.plugins.clone_plugins.info import ADMINS, AUTH_CHANNEL, LOG_CHANNEL, SUPPORT_LINK, UPDATES_LINK, PICS, \
+from clone_plugins.info import ADMINS, AUTH_CHANNEL, LOG_CHANNEL, SUPPORT_LINK, UPDATES_LINK, PICS, \
     PROTECT_CONTENT, IMDB, AUTO_FILTER, SPELL_CHECK, IMDB_TEMPLATE, AUTO_DELETE
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid, ChatAdminRequired
-from bot.plugins.clone_plugins.utils import get_size, is_subscribed, get_shortlink, get_poster, temp, get_settings, save_group_settings
-from bot.plugins.clone_plugins.database.users_chats_db import db
-from bot.plugins.clone_plugins.database.ia_filterdb import Media, get_file_details, get_search_results,delete_files
+from clone_plugins.utils import get_size, is_subscribed, get_shortlink, get_poster, temp, get_settings, save_group_settings
+from clone_plugins.database.users_chats_db import db
+from clone_plugins.database.ia_filterdb import Media, get_file_details, get_search_results,delete_files
 import logging
 
 logger = logging.getLogger(__name__)
