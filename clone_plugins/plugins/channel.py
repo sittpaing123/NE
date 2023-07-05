@@ -1,6 +1,6 @@
 from pyrogram import Client, filters, enums
-from bot.plugins.clone_plugins.info import INDEX_CHANNELS
-from bot.plugins.clone_plugins.database.ia_filterdb import save_file
+from clone_plugins.info import INDEX_CHANNELS
+from clone_plugins.database.ia_filterdb import save_file
 
 media_filter = filters.document | filters.video
 
