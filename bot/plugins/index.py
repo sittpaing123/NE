@@ -93,7 +93,7 @@ async def send_for_index(bot: Bot, message: types.Message):
         buttons = [
             [
                 InlineKeyboardButton(
-                    "Yes",
+                    "Yes0000",
                     callback_data=f"index#accept#{chat_id}#{last_msg_id}#{message.from_user.id}",
                 )
             ],
