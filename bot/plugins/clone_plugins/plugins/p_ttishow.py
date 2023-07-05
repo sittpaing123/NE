@@ -2,11 +2,11 @@ import random
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, PeerIdInvalid
-from info import ADMINS, LOG_CHANNEL, PICS, SUPPORT_LINK
-from database.users_chats_db import db
-from database.ia_filterdb import Media
-from utils import get_size, temp, get_settings
-from Script import script
+from bot.plugins.clone_plugins.info import ADMINS, LOG_CHANNEL, PICS, SUPPORT_LINK
+from bot.plugins.clone_plugins.database.users_chats_db import db
+from bot.plugins.clone_plugins.database.ia_filterdb import Media
+from bot.plugins.clone_plugins.utils import get_size, temp, get_settings
+from bot.plugins.clone_plugins.Script import script
 from pyrogram.errors import ChatAdminRequired
 
 @Client.on_message(filters.new_chat_members & filters.group)
