@@ -1,9 +1,9 @@
 from pyrogram import Client, filters
 import datetime
 import time
-from database.users_chats_db import db
-from info import ADMINS
-from utils import broadcast_messages, groups_broadcast_messages, temp
+from bot.plugins.clone_plugins.database.users_chats_db import db
+from bot.plugins.clone_plugins.info import ADMINS
+from bot.plugins.clone_plugins.utils import broadcast_messages, groups_broadcast_messages, temp
 import asyncio
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
         
