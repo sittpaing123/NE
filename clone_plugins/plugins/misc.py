@@ -1,5 +1,5 @@
 import os
-from bot.plugins.clone_plugins.utils import get_file_id
+from clone_plugins.utils import get_file_id
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 import time
