@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
-from bot.plugins.clone_plugins.utils import temp
+from clone_plugins.utils import temp
 from pyrogram.types import Message
-from bot.plugins.clone_plugins.database.users_chats_db import db
-from bot.plugins.clone_plugins.info import SUPPORT_LINK
+from clone_plugins.database.users_chats_db import db
+from clone_plugins.info import SUPPORT_LINK
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 async def banned_users(_, client, message: Message):
