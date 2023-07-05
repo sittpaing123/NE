@@ -7,6 +7,7 @@ from bot.plugins.clone_plugins.info import ADMINS, LOG_CHANNEL
 from bot.plugins.clone_plugins.database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot.plugins.clone_plugins.utils import temp
+from bot.utils.logger import LOGGER
 from bot import Bot
 import re
 logger = logging.getLogger(__name__)
@@ -102,8 +103,7 @@ async def set_skip_number(bot, message):
     else:
         await message.reply("Give me a skip number")
 
-
-async def index_files_to_db(lst_msg_id, chat, msg, bot: Bot):
+async def index_files_to_db(lst_msg_id: int, chat: int, msg, bot: Bot):
     total_files = 0
     duplicate = 0
     errors = 0
@@ -112,14 +112,21 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot: Bot):
     unsupported = 0
     async with lock:
         try:
-            current = temp.CURRENT
-            temp.CANCEL = False
-            async for message in bot.iter_messages(chat, lst_msg_id, temp.CURRENT):
-                if temp.CANCEL:
-                    await msg.edit(f"Successfully Cancelled!\n\nSaved <code>{total_files}</code> files to Database!\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>\nUnsupported Media: <code>{unsupported}</code>\nErrors Occurred: <code>{errors}</code>")
+            current = Cache.CURRENT
+            Cache.CANCEL = False
+            async for message in bot.iter_messages(chat, lst_msg_id, Cache.CURRENT):  # type: ignore
+                if Cache.CANCEL:
+                    inserted, errored = await a_filter.insert_pending()
+                    if inserted:
+                        total_files += inserted
+                    if errored:
+                        duplicate += errored
+                    await msg.edit(
+                        f"Successfully Cancelled!!\n\nSaved <code>{total_files} / {current}</code> files to dataBase!\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>(Unsupported Media - `{unsupported}` )\nErrors Occurred: <code>{errors}</code>"
+                    )
                     break
                 current += 1
-                if current % 20 == 0:
+                if current % 200 == 0:
                     can = [[InlineKeyboardButton('CANCEL', callback_data='index_cancel')]]
                     reply = InlineKeyboardMarkup(can)
                     await msg.edit_text(
