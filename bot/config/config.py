@@ -127,6 +127,8 @@ class Config:
     PHOTO_FILTER = True
     CH_POST = False
     TEXT_LINK = False
+    CH_G1 = False
+    CH_G2 = False
 
 
     USE_CAPTION_FILTER = get_config("USE_CAPTION_FILTER", True, True)  # type: ignore
