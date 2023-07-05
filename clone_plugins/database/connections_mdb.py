@@ -1,6 +1,6 @@
 import pymongo
 
-from bot.plugins.clone_plugins.info import DATABASE_URL, DATABASE_NAME
+from clone_plugins.info import DATABASE_URL, DATABASE_NAME
 
 import logging
 logger = logging.getLogger(__name__)
