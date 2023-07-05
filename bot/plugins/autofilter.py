@@ -674,6 +674,7 @@ https://t.me/+KzKnH0ApsmVjNjM9
 👉<code>  {search}  </code> 👈 ဟုရိုက်ပြီး
 
 ဇာတ်ကားကို ကြည့်ရှုနိုင်ပါသည်။
+
 <a href='https://t.me/+KzKnH0ApsmVjNjM9'>©️ 𝗝𝗢𝗜𝗡 𝗚𝗥𝗢𝗨𝗣</a><a href='https://t.me/+TIwZJBnFDP1kM2Q1'>©️ 𝗙𝗜𝗟𝗘 𝗦𝗧𝗢𝗥𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟</a>""",
     ]
     cap += random.choice(cap1_options)
