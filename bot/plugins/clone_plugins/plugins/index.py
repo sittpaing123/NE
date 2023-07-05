@@ -103,7 +103,7 @@ async def set_skip_number(bot, message):
         await message.reply("Give me a skip number")
 
 
-async def index_files_to_db(lst_msg_id, chat, msg, bot):
+async def index_files_to_db(lst_msg_id, chat, msg, bot: Bot):
     total_files = 0
     duplicate = 0
     errors = 0
