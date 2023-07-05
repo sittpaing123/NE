@@ -7,8 +7,8 @@ from pyrogram.types import Message
 from pyrogram.errors.exceptions.bad_request_400 import AccessTokenExpired, AccessTokenInvalid
 
 from ..config import Config
-
-mongo_client = MongoClient(Config.DATABASE_URI)
+from bot.plugins.clone_plugins.info import DATABASE_URL
+mongo_client = MongoClient(DATABASE_URL)
 mongo_db = mongo_client["cloned_bots"]
 
 
