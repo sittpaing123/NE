@@ -3,10 +3,10 @@ import asyncio
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, ChatAdminRequired, UsernameInvalid, UsernameNotModified, UserIsBlocked
-from info import ADMINS, LOG_CHANNEL
-from database.ia_filterdb import save_file
+from bot.plugins.clone_plugins.info import ADMINS, LOG_CHANNEL
+from bot.plugins.clone_plugins.database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from utils import temp
+from bot.plugins.clone_plugins.utils import temp
 import re
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
