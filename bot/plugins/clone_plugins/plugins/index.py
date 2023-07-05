@@ -7,6 +7,7 @@ from bot.plugins.clone_plugins.info import ADMINS, LOG_CHANNEL
 from bot.plugins.clone_plugins.database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot.plugins.clone_plugins.utils import temp
+from bot import Bot
 import re
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
