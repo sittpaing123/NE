@@ -11,3 +11,4 @@ Ponytile
 speedtest
 speedtest-cli
 psutil==5.9.0
+umongo==3.0.1
