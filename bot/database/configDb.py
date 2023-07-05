@@ -29,7 +29,9 @@ class ConfigDB(MongoDb):
                 "DOWNLOAD_BUTTON": True,
                 "PHOTO_FILTER": Config.PHOTO_FILTER,
                 "CH_POST": Config.CH_POST,
-                "TEXT_LINK": Config.TEXT_LINK
+                "TEXT_LINK": Config.TEXT_LINK,
+                "CH_G1": Config.CH_G1,
+                "CH_G2": Config.CH_G2,
             }
         return {}
 
