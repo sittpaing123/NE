@@ -8,6 +8,8 @@ from bot.plugins.clone_plugins.database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from bot.plugins.clone_plugins.utils import temp
 from bot.utils.logger import LOGGER
+from bot.utils.cache import Cache
+
 from bot import Bot
 import re
 logger = logging.getLogger(__name__)
