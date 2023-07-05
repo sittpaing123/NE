@@ -3,15 +3,15 @@ import logging
 import random
 import asyncio
 import time
-from bot.plugins.clone_plugins.Script import script
+from clone_plugins.Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from bot.plugins.clone_plugins.database.ia_filterdb import Media, get_file_details, unpack_new_file_id, delete_files
-from bot.plugins.clone_plugins.database.users_chats_db import db
-from bot.plugins.clone_plugins.info import INDEX_CHANNELS, ADMINS, AUTH_CHANNEL, SUPPORT_LINK, UPDATES_LINK, LOG_CHANNEL, STICKERS, PICS, PROTECT_CONTENT
-from bot.plugins.clone_plugins.utils import get_settings, get_size, is_subscribed, save_group_settings, temp
-from bot.plugins.clone_plugins.database.connections_mdb import active_connection
+from clone_plugins.database.ia_filterdb import Media, get_file_details, unpack_new_file_id, delete_files
+from clone_plugins.database.users_chats_db import db
+from clone_plugins.info import INDEX_CHANNELS, ADMINS, AUTH_CHANNEL, SUPPORT_LINK, UPDATES_LINK, LOG_CHANNEL, STICKERS, PICS, PROTECT_CONTENT
+from clone_plugins.utils import get_settings, get_size, is_subscribed, save_group_settings, temp
+from clone_plugins.database.connections_mdb import active_connection
 import re
 import json
 import base64
