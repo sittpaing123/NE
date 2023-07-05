@@ -87,7 +87,7 @@ async def ononv_clone(client, message):
             ai = Client(
                 f"{bot_token}", Config.API_ID, Config.API_HASH,
                 bot_token=bot_token,
-                plugins={"root": "bot/plugins/clone_plugins"},
+                plugins={"root": "clone_plugins"},
             )
             await ai.start()
             bot = await ai.get_me()
