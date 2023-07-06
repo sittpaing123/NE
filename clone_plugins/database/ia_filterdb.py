@@ -14,8 +14,8 @@ logger.setLevel(logging.INFO)
 
 # Establish database connection
 client = AsyncIOMotorClient(DATABASE_URL)
-db = client[DATABASE_NAME]
-instance = Instance(db)
+db = client.get_database(DATABASE_NAME) if DATABASE_NAME else None
+instance = Instance.from_db(db)
 
 @instance.register
 class Media(Document):
