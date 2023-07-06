@@ -16,7 +16,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerId
 from clone_plugins.utils import get_size, is_subscribed, get_shortlink, get_poster, temp, get_settings, save_group_settings
 from clone_plugins.database.users_chats_db import db
 from clone_plugins.database.ia_filterdb import Media, get_file_details, get_search_results,delete_files
-from bot.database.autofilter import a_filter
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -90,7 +90,7 @@ async def next_page(bot, query):
         await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
         return
 
-    files, n_offset, total = await a_filter.get_search_results(search, offset=offset, filter=True)
+    files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
     try:
         n_offset = int(n_offset)
     except:
@@ -320,7 +320,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
-        files_ = await a_filter.get_file_details(file_id)
+        files_ = await get_file_details(file_id)
         user = query.message.reply_to_message.from_user.id
         if int(user) != 0 and query.from_user.id != int(user):
             return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
@@ -745,7 +745,7 @@ async def auto_filter(client, msg, spoll=False):
             return
         if 2 < len(message.text) < 100:
             search = message.text
-            files, offset, total_results = await a_filter.get_search_results(search.lower(), offset=0, filter=True)
+            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files:
                 if settings["spell_check"]:
                     return await advantage_spell_chok(msg)
