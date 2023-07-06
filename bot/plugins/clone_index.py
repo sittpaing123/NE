@@ -18,8 +18,8 @@ lock = asyncio.Lock()
 
 from bot.config.config import Config
 
-@Bot.on_callback_query(filters.regex(r'^index'))
-async def index_files(bot, query):
+@Client.on_callback_query(filters.regex(r'^indexclone'))
+async def index_files_clone(bot, query):
     if query.data.startswith('index_cancel'):
         temp.CANCEL = True
         return await query.answer("Cancelling Indexing...")
@@ -40,11 +40,11 @@ async def index_files(bot, query):
         chat = int(chat)
     except:
         chat = chat
-    await index_files_to_db(int(lst_msg_id), chat, msg, bot)
+    await index_files_to_db_clone(int(lst_msg_id), chat, msg, bot)
 
 
-@Bot.on_message((filters.forwarded | (filters.regex("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")) & filters.text ) & filters.private & filters.incoming)
-async def send_for_index(bot, message):
+@Client.on_message((filters.forwarded | (filters.regex("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")) & filters.text ) & filters.private & filters.incoming)
+async def send_for_index_clone(bot, message):
     if message.text:
         regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
         match = regex.match(message.text)
@@ -79,7 +79,7 @@ async def send_for_index(bot, message):
         buttons = [
             [
                 InlineKeyboardButton('YES',
-                                     callback_data=f'index#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
+                                     callback_data=f'indexclone#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
             ],
             [
                 InlineKeyboardButton('CLOSE', callback_data='close_data'),
@@ -93,8 +93,8 @@ async def send_for_index(bot, message):
         await message.reply("Sorry! You can't index files, You'r not my owner.")
 
 
-@Bot.on_message(filters.command('set_skip') & filters.user(ADMINS))
-async def set_skip_number(bot, message):
+@Client.on_message(filters.command('set_skip') & filters.user(ADMINS))
+async def set_skip_number_clone(bot, message):
     if ' ' in message.text:
         _, skip = message.text.split(" ")
         try:
@@ -106,7 +106,8 @@ async def set_skip_number(bot, message):
     else:
         await message.reply("Give me a skip number")
 
-async def index_files_to_db(lst_msg_id, chat, msg, bot):
+
+async def index_files_to_db_clone(lst_msg_id, chat, msg, bot):
     total_files = 0
     duplicate = 0
     errors = 0
@@ -117,7 +118,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
         try:
             current = temp.CURRENT
             temp.CANCEL = False
-            async for message in bot.iter_chat_history(chat, lst_msg_id, offset_id=temp.CURRENT):
+            async for message in bot.iter_messages(chat, lst_msg_id, temp.CURRENT):
                 if temp.CANCEL:
                     await msg.edit(f"Successfully Cancelled!\n\nSaved <code>{total_files}</code> files to Database!\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>\nUnsupported Media: <code>{unsupported}</code>\nErrors Occurred: <code>{errors}</code>")
                     break
@@ -155,4 +156,3 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
             await msg.edit(f'Error: {e}')
         else:
             await msg.edit(f'Succesfully saved <code>{total_files}</code> to Database!\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>\nUnsupported Media: <code>{unsupported}</code>\nErrors Occurred: <code>{errors}</code>')
-
