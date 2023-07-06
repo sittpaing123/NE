@@ -18,7 +18,7 @@ lock = asyncio.Lock()
 
 from bot.config.config import Config
 
-@Client.on_callback_query(filters.regex(r'^index'))
+@Bot.on_callback_query(filters.regex(r'^index'))
 async def index_files(bot, query):
     if query.data.startswith('index_cancel'):
         temp.CANCEL = True
@@ -43,7 +43,7 @@ async def index_files(bot, query):
     await index_files_to_db(int(lst_msg_id), chat, msg, bot)
 
 
-@Client.on_message((filters.forwarded | (filters.regex("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")) & filters.text ) & filters.private & filters.incoming)
+@Bot.on_message((filters.forwarded | (filters.regex("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")) & filters.text ) & filters.private & filters.incoming)
 async def send_for_index(bot, message):
     if message.text:
         regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
@@ -93,7 +93,7 @@ async def send_for_index(bot, message):
         await message.reply("Sorry! You can't index files, You'r not my owner.")
 
 
-@Client.on_message(filters.command('set_skip') & filters.user(ADMINS))
+@Bot.on_message(filters.command('set_skip') & filters.user(ADMINS))
 async def set_skip_number(bot, message):
     if ' ' in message.text:
         _, skip = message.text.split(" ")
@@ -106,7 +106,7 @@ async def set_skip_number(bot, message):
     else:
         await message.reply("Give me a skip number")
 
-async def index_files_to_db(lst_msg_id, chat, msg, bot: Bot):
+async def index_files_to_db(lst_msg_id, chat, msg, bot):
     total_files = 0
     duplicate = 0
     errors = 0
