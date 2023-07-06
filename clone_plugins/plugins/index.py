@@ -117,7 +117,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
         try:
             current = temp.CURRENT
             temp.CANCEL = False
-            async for message in bot.iter_history(chat, limit=temp.CURRENT, offset_id=lst_msg_id):
+             async for message in bot.get_chat_history(chat, limit=temp.CURRENT, offset_id=lst_msg_id):
                 if temp.CANCEL:
                     await msg.edit(f"Successfully Cancelled!\n\nSaved <code>{total_files}</code> files to Database!\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>\nUnsupported Media: <code>{unsupported}</code>\nErrors Occurred: <code>{errors}</code>")
                     break
