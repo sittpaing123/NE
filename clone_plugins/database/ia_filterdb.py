@@ -12,10 +12,10 @@ from clone_plugins.info import DATABASE_URL, DATABASE_NAME, COLLECTION_NAME, USE
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-
+# Establish database connection
 client = AsyncIOMotorClient(DATABASE_URL)
 db = client[DATABASE_NAME]
-instance = Instance.from_db(db)
+instance = Instance(db)
 
 @instance.register
 class Media(Document):
