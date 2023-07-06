@@ -1,4 +1,4 @@
-from typing import Union
+from typing import AsyncGenerator, Optional, Union
 
 from pyrogram import handlers, types
 
