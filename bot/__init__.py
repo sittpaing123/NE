@@ -67,7 +67,7 @@ class Bot(Client):
                 current += 1
             await asyncio.sleep(10)
 
-    async def index_chat_history(
+    async def iter_chat_history(
         self,
         chat_id: Union[int, str],
         limit: int,
@@ -91,7 +91,7 @@ class Bot(Client):
             ``Generator``: A generator yielding :obj:`~pyrogram.types.Message` objects.
         Example:
             .. code-block:: python
-                async for message in app.index_chat_history("pyrogram", 100, offset_id=15000):
+                async for message in app.iter_chat_history("pyrogram", 100, offset_id=15000):
                     print(message.text)
         """
         current = offset_id
@@ -109,7 +109,6 @@ class Bot(Client):
                 yield message
                 current = message.message_id - 1
             await asyncio.sleep(10)
-
 
 
 bot = Bot(Config.BOT_NAME)  # type: ignore
