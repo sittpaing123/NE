@@ -6,7 +6,7 @@ from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, ChatAdmin
 from clone_plugins.info import ADMINS, LOG_CHANNEL
 from clone_plugins.database.ia_filterdb import save_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from clone_plugins.utils import temp
+from bot.utils import temp
 from bot.utils.logger import LOGGER
 from bot.utils.cache import Cache
 
