@@ -29,7 +29,7 @@ class Media(Document):
 
     class Meta:
         indexes = ('$file_name', )
-        collection_name = COLLECTION_NAME
+        collection_name = COLLECTION_NAME55
 
 
 async def save_file(media):
