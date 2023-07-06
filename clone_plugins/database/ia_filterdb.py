@@ -12,11 +12,9 @@ from clone_plugins.info import DATABASE_URL, DATABASE_NAME, COLLECTION_NAME, USE
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# Establish database connection
 client = AsyncIOMotorClient(DATABASE_URL)
-db = client.get_database(DATABASE_NAME)
-instance = Instance(db, client=client)
-
+db = client[DATABASE_NAME]
+instance = Instance.from_db(db)
 
 @instance.register
 class Media(Document):
@@ -59,12 +57,10 @@ async def save_file(media):
             logger.warning(
                 f'{getattr(media, "file_name", "NO_FILE")} is already saved in database'
             )
-
             return False, 0
         else:
             logger.info(f'{getattr(media, "file_name", "NO_FILE")} is saved to database')
             return True, 1
-
 
 
 async def get_search_results(query, file_type=None, max_results=10, offset=0, filter=False):
